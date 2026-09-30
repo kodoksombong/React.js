@@ -1,5 +1,13 @@
 # React + Vite
 
+## Spotify activity
+
+The Spotify activity API requires a Spotify client ID, client secret, and refresh token. Copy `.env.example` to `.env.local` and fill in the values. `.env.local` is ignored by Git.
+
+Use `npm run dev` to run the portfolio and Spotify API locally. On Vercel, add the same variables in the project's Environment Variables settings.
+
+If credentials were previously committed or exposed, revoke and replace them before use.
+
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
 Currently, two official plugins are available:

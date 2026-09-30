@@ -462,7 +462,7 @@ function App() {
 
           <div className="experience-accordion-group">
             {education.map((item) => (
-              <details key={item.name} className="experience-item" open>
+              <details key={item.name} className="experience-item">
                 <summary className="experience-header">
                   <div className="experience-main">
                     <div className="experience-logo-badge school-badge">
