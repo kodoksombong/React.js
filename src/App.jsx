@@ -81,6 +81,7 @@ const projects = [
     type: 'Research',
     year: '2024',
     title: 'Water Quality Assessment',
+    image: '/docsandpics/pkl.jpg',
     description: 'A field study tracking water quality and non-revenue water across the Jatimulyo DMA.',
     tags: ['Water Quality', 'Internship', 'Water Loss', 'Water Resources Engineering', 'Research'],
   },
@@ -88,6 +89,7 @@ const projects = [
     type: 'Web Development',
     year: 'Live',
     title: 'Portfolio Website',
+    image: '/docsandpics/web.jpeg',
     description: 'A personal portfolio bringing together engineering work, experience, and digital projects.',
     tags: ['HTML', 'CSS', 'JavaScript', 'Python', 'React'],
   },
@@ -504,7 +506,7 @@ function App() {
             {projects.map((project, index) => (
               <article
                 key={project.title}
-                className={`project-card ${index === 0 ? 'project-feature' : `project-standalone project-photo-${index === 1 ? 'left' : 'right'}`}`}
+                className={`project-card ${index === 0 ? 'project-feature' : 'project-standalone'}`}
               >
                 {index === 0 ? (
                   <>
@@ -542,7 +544,13 @@ function App() {
                   </>
                 ) : (
                   <>
-                    <div className="project-image" aria-hidden="true" />
+                    <div
+                      className="project-image"
+                      style={{
+                        backgroundImage: `linear-gradient(180deg, rgba(12, 17, 26, 0.1), rgba(12, 17, 26, 0.18)), url("${project.image}")`,
+                      }}
+                      aria-hidden="true"
+                    />
                     <div className="project-card-footer">
                       <div className="project-title-row">
                         <span className="project-kicker">{project.type}</span>
