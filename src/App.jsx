@@ -266,7 +266,99 @@ function SocialIcon({ label }) {
   }
 }
 
-function App() {
+function WorkPage() {
+  return (
+    <div className="page-shell work-page">
+      <nav className="site-nav" aria-label="Main navigation">
+        <a className="site-wordmark" href="/" aria-label="Athar's Portfolio home">Athar's Portfolio</a>
+        <a className="site-nav-link" href="/">← Back to profile</a>
+      </nav>
+
+      <header className="work-page-hero">
+        <p className="eyebrow">PROJECT INDEX · 2021—2026</p>
+        <h1>Selected work<span>& credentials</span></h1>
+        <p className="work-page-lede">
+          Research, field work, and digital projects, alongside the training behind them.
+        </p>
+        <div className="work-page-jumps" aria-label="On this page">
+          <a href="#projects">Projects <span>{String(projects.length).padStart(2, '0')}</span></a>
+          <a href="#certifications">Certifications <span>{String(certifications.length).padStart(2, '0')}</span></a>
+        </div>
+      </header>
+
+      <main className="work-page-content">
+        <section id="projects" className="work-index-section">
+          <div className="work-section-heading">
+            <p className="work-index-label">01 / PROJECTS</p>
+            <h2>Built, studied, delivered.</h2>
+          </div>
+          <div className="work-project-grid">
+            {projects.map((project, index) => (
+              <article className={`work-project-card ${index === 0 ? 'work-project-feature' : ''}`} key={project.title}>
+                <div className="work-project-image-wrap">
+                  <img className="work-project-image" src={project.image} alt={`${project.title} project`} />
+                  <span className="work-project-number">{String(index + 1).padStart(2, '0')}</span>
+                </div>
+                <div className="work-project-copy">
+                  <div className="work-project-meta">
+                    <span>{project.type}</span>
+                    <span>{project.year}</span>
+                  </div>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  {project.figures && (
+                    <ul className="work-project-figures">
+                      {project.figures.map((figure) => <li key={figure}>{figure}</li>)}
+                    </ul>
+                  )}
+                  <ul className="work-project-tags" aria-label="Project topics">
+                    {project.tags.map((tag) => <li key={tag}>{tag}</li>)}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="certifications" className="work-index-section work-credentials-section">
+          <div className="work-section-heading">
+            <p className="work-index-label">02 / CERTIFICATIONS</p>
+            <h2>Learning with a paper trail.</h2>
+          </div>
+          <div className="certification-accordion-group">
+            {certifications.map((item) => (
+              <details key={item.title} className="certification-item">
+                <summary className="certification-header">
+                  <span className="certification-title">{item.title}</span>
+                  <span className="certification-provider">{item.provider}</span>
+                  <span className="certification-controls">
+                    <span className="certification-action certification-action-open">See details</span>
+                    <span className="certification-action certification-action-close">Close</span>
+                    <span className="certification-chevron" aria-hidden="true" />
+                  </span>
+                </summary>
+                <div className="certification-body">
+                  <p>Credential ID: {item.id}</p>
+                  <p className="certification-detail-label">Topics / Scores</p>
+                  <ul className="certification-detail-list">
+                    {item.scores.map((score) => <li key={score}>{score}</li>)}
+                  </ul>
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      </main>
+
+      <footer className="work-page-footer">
+        <a href="/">← Return to profile</a>
+        <a href="mailto:atharabhista@gmail.com">Get in touch ↗</a>
+      </footer>
+    </div>
+  )
+}
+
+function HomePage() {
   const [serverStatus, setServerStatus] = useState('offline')
   const [serverStatusText, setServerStatusText] = useState('')
   const [spotifyData, setSpotifyData] = useState({
@@ -361,7 +453,11 @@ function App() {
   }, [])
 
   return (
-    <div className="page-shell">
+    <div id="top" className="page-shell">
+      <nav className="site-nav" aria-label="Main navigation">
+        <a className="site-wordmark" href="/" aria-label="Athar's Portfolio home">Athar's Portfolio</a>
+        <a className="site-nav-link" href="/work">Explore work <span aria-hidden="true">↗</span></a>
+      </nav>
       <header className="profile-hero">
         <div className="profile-container">
           <div className="profile-background">
@@ -620,10 +716,20 @@ function App() {
             ))}
           </div>
           <div className="section-more-row">
-            <a href="https://github.com/kodoksombong" target="_blank" rel="noreferrer" className="section-more-link">
-              See more
+            <a href="/work#projects" className="section-more-link">
+              Explore all work <span aria-hidden="true">↗</span>
             </a>
           </div>
+        </section>
+
+        <section className="contact-midpoint" aria-label="Get in touch">
+          <div>
+            <p className="contact-kicker">HAVE A PROJECT OR OPPORTUNITY?</p>
+            <h2>Let’s make something meaningful.</h2>
+          </div>
+          <a href="#contact" className="contact-midpoint-link">
+            Contact Me <span aria-hidden="true">↓</span>
+          </a>
         </section>
 
         <section id="work-experiences" className="experience-section">
@@ -739,14 +845,48 @@ function App() {
             ))}
           </div>
           <div className="section-more-row">
-            <a href="mailto:atharabhista@gmail.com?subject=Request%20for%20more%20certification%20details" className="section-more-link">
-              See more
+            <a href="/work#certifications" className="section-more-link">
+              View all credentials <span aria-hidden="true">↗</span>
             </a>
           </div>
         </section>
       </main>
+
+      <footer id="contact" className="contact-footer">
+        <div className="contact-footer-inner">
+          <div className="contact-footer-intro">
+            <p className="contact-kicker">OPEN TO OPPORTUNITIES</p>
+            <h2>Contact Me</h2>
+            <p>Have a role, project, or question? I’d be glad to hear from you.</p>
+          </div>
+          <div className="contact-footer-details">
+            <a className="contact-email" href="mailto:atharabhista@gmail.com">
+              atharabhista@gmail.com <span aria-hidden="true">↗</span>
+            </a>
+            <ul className="contact-social-links" aria-label="Contact and professional profiles">
+              {socialLinks.filter((item) => ['LinkedIn', 'GitHub'].includes(item.label)).map((item) => (
+                <li key={item.label}>
+                  <a href={item.href} target="_blank" rel="noreferrer">
+                    <SocialIcon label={item.label} />
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div className="contact-footer-bottom">
+          <span>Athar’s Portfolio</span>
+          <a href="#top">Back to top ↑</a>
+        </div>
+      </footer>
     </div>
   )
+}
+
+function App() {
+  const currentPath = window.location.pathname.replace(/\/+$/, '')
+  return currentPath === '/work' ? <WorkPage /> : <HomePage />
 }
 
 export default App
