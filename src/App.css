@@ -1270,6 +1270,9 @@ header {
 }
 
 .certification-drive-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 16px;
     padding: 7px 11px;
     border: 1px solid var(--surface-accent);
@@ -1279,6 +1282,13 @@ header {
     font-size: 0.72rem;
     font-weight: 700;
     line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a.certification-drive-button:hover {
+    border-color: var(--surface-ink);
+    background: var(--surface-ink);
 }
 
 .certification-drive-button:disabled {
@@ -1681,6 +1691,7 @@ header {
     background-image: linear-gradient(rgba(223, 224, 217, 0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(223, 224, 217, 0.045) 1px, transparent 1px);
     background-size: 34px 34px;
     color: #f3f0e9;
+    text-align: center;
 }
 
 .work-page-hero .eyebrow {
@@ -1694,6 +1705,7 @@ header {
 
 .work-page-hero h1 {
     max-width: 760px;
+    margin-inline: auto;
     color: #f3f0e9;
     font-size: 3.2rem;
     line-height: 1.12;
@@ -1706,7 +1718,7 @@ header {
 
 .work-page-lede {
     max-width: 520px;
-    margin-top: 16px;
+    margin: 16px auto 0;
     color: rgba(243, 240, 233, 0.78);
     font-size: 0.95rem;
 }
@@ -1714,6 +1726,7 @@ header {
 .work-page-jumps {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 10px 28px;
     margin-top: 32px;
 }
@@ -1755,12 +1768,13 @@ header {
 
 .work-section-heading {
     display: grid;
-    grid-template-columns: minmax(150px, 0.55fr) minmax(0, 1fr);
-    align-items: baseline;
-    gap: 16px;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 8px;
     margin-bottom: 22px;
     padding-bottom: 12px;
     border-bottom: 1px solid rgba(28, 40, 48, 0.25);
+    text-align: center;
 }
 
 .work-index-label {
@@ -1838,8 +1852,9 @@ header {
 .work-project-copy {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     padding: 20px;
+    text-align: center;
 }
 
 .work-project-feature .work-project-copy {
@@ -1860,17 +1875,21 @@ header {
 }
 
 .work-project-copy h3 {
+    width: 100%;
     margin-top: 12px;
     color: #1c2830;
     font-size: 1.35rem;
     line-height: 1.25;
+    text-align: center;
 }
 
 .work-project-copy > p {
+    width: 100%;
     margin-top: 10px;
     color: rgba(28, 40, 48, 0.78);
     font-size: 0.84rem;
     line-height: 1.7;
+    text-align: left;
 }
 
 .work-project-figures {
@@ -1892,9 +1911,25 @@ header {
 .work-project-tags {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 7px;
+    width: 100%;
     margin-top: auto;
     padding-top: 18px;
+}
+
+.work-page .certification-header {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    justify-items: center;
+    min-height: 152px;
+    text-align: center;
+}
+
+.work-page .certification-controls {
+    grid-column: 1;
+    grid-row: auto;
+    justify-content: center;
 }
 
 .work-project-tags li {

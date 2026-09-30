@@ -172,12 +172,14 @@ const certifications = [
     title: 'TOEFL ITP',
     provider: 'Brawijaya Language Center',
     id: '10.02188/SRT/B/BMU/BLC/III/2026',
+    credentialUrl: 'https://drive.google.com/file/d/1P1i4KAi0mwv1wtl28EVT-XtmikA1nh-J/view?usp=drive_link',
     scores: ['Reading: 60', 'Listening: 64', 'Structure and Writing: 56'],
   },
   {
     title: 'Python 3 Course',
     provider: 'Codecademy',
     id: 'PY-3-2024-06-001',
+    credentialUrl: 'https://drive.google.com/file/d/1tUqb3zGHQDErxdkSqHIKn-3VUEAmci7U/view?usp=drive_link',
     scores: [
       'Python 3 programming language',
       'Data types, operators, and expressions',
@@ -192,12 +194,14 @@ const certifications = [
     title: 'Microsoft Office Specialist',
     provider: 'Trust Training Partners',
     id: 'MOS-2024-06-001',
+    credentialUrl: 'https://drive.google.com/file/d/1lCtOY8kVQ8r9SBQaPKuRHM-qNaZn5_nP/view?usp=drive_link',
     scores: ['Microsoft Word', 'Microsoft Excel', 'Microsoft PowerPoint'],
   },
   {
     title: 'Sertifikasi Bimbingan Teknis Sistem Manajemen Keselamatan Konstruksi',
     provider: 'Kementerian Pekerjaan Umum dan Perumahan Rakyat',
     id: '2461/PY/BIMTEK-SMKK/JAKARTA/2021',
+    credentialUrl: 'https://drive.google.com/file/d/1ZsR_-3UE4d71L0WK-He9fGd1TqGRDyHt/view?usp=drive_link',
     scores: ['Safety management systems', 'Construction safety practices', 'Risk assessment and mitigation'],
   },
 ]
@@ -266,6 +270,22 @@ function SocialIcon({ label }) {
   }
 }
 
+function CredentialButton({ credentialUrl }) {
+  if (!credentialUrl) {
+    return (
+      <button className="certification-drive-button" type="button" disabled>
+        Credential PDF not linked
+      </button>
+    )
+  }
+
+  return (
+    <a className="certification-drive-button" href={credentialUrl} target="_blank" rel="noreferrer">
+      Show Credential
+    </a>
+  )
+}
+
 function WorkPage() {
   return (
     <div className="page-shell work-page">
@@ -332,8 +352,8 @@ function WorkPage() {
                   <span className="certification-title">{item.title}</span>
                   <span className="certification-provider">{item.provider}</span>
                   <span className="certification-controls">
-                    <span className="certification-action certification-action-open">See details</span>
-                    <span className="certification-action certification-action-close">Close</span>
+                    <span className="certification-action certification-action-open">Show Details</span>
+                    <span className="certification-action certification-action-close">Hide Details</span>
                     <span className="certification-chevron" aria-hidden="true" />
                   </span>
                 </summary>
@@ -343,6 +363,7 @@ function WorkPage() {
                   <ul className="certification-detail-list">
                     {item.scores.map((score) => <li key={score}>{score}</li>)}
                   </ul>
+                  <CredentialButton credentialUrl={item.credentialUrl} />
                 </div>
               </details>
             ))}
@@ -840,6 +861,7 @@ function HomePage() {
                       <li key={score}>{score}</li>
                     ))}
                   </ul>
+                  <CredentialButton credentialUrl={item.credentialUrl} />
                 </div>
               </details>
             ))}
