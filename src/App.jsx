@@ -270,10 +270,12 @@ function App() {
   const [serverStatus, setServerStatus] = useState('offline')
   const [serverStatusText, setServerStatusText] = useState('')
   const [spotifyData, setSpotifyData] = useState({
-    title: 'Panah Asmara',
-    artist: 'Chrisye',
-    albumImageUrl: 'https://i.scdn.co/image/ab67616d0000b273e726429d9a720a02c1996ad5',
+    title: 'Loading Spotify...',
+    artist: '',
+    albumImageUrl: '',
     isPlaying: false,
+    songUrl: '',
+    status: 'loading',
   })
 
   useEffect(() => {
@@ -302,18 +304,48 @@ function App() {
     const fetchSpotifyActivity = async () => {
       try {
         const response = await fetch('/api/spotify')
-        if (!response.ok) return
+        if (!response.ok) {
+          setSpotifyData({
+            title: 'Spotify activity unavailable',
+            artist: '',
+            albumImageUrl: '',
+            isPlaying: false,
+            songUrl: '',
+            status: 'unavailable',
+          })
+          return
+        }
+
         const data = await response.json()
-        if (!data || !data.title) return
+        if (!data || !data.title) {
+          setSpotifyData({
+            title: 'No recent tracks',
+            artist: '',
+            albumImageUrl: '',
+            isPlaying: false,
+            songUrl: '',
+            status: 'idle',
+          })
+          return
+        }
 
         setSpotifyData({
-          title: data.title || 'Panah Asmara',
-          artist: data.artist || 'Chrisye',
-          albumImageUrl: data.albumImageUrl || 'https://i.scdn.co/image/ab67616d0000b273e726429d9a720a02c1996ad5',
+          title: data.title,
+          artist: data.artist || '',
+          albumImageUrl: data.albumImageUrl || '',
           isPlaying: Boolean(data.isPlaying),
+          songUrl: data.songUrl || '',
+          status: data.isPlaying ? 'playing' : 'recent',
         })
       } catch {
-        // keep fallback data
+        setSpotifyData({
+          title: 'Spotify activity unavailable',
+          artist: '',
+          albumImageUrl: '',
+          isPlaying: false,
+          songUrl: '',
+          status: 'unavailable',
+        })
       }
     }
 
@@ -356,14 +388,16 @@ function App() {
             </nav>
 
             <a
-              href="https://open.spotify.com/track/0Cl6I2irBPBRUqbI1iihv7"
+              href={spotifyData.songUrl || 'https://open.spotify.com/user/stephanorath?si=65acfdaa241e4aa1'}
               className="spotify-card"
               target="_blank"
               rel="noreferrer"
               aria-label="Spotify listening activity"
             >
               <div className="spotify-album-wrap">
-                <img src={spotifyData.albumImageUrl} alt="Album art" className="spotify-album-art" />
+                {spotifyData.albumImageUrl && (
+                  <img src={spotifyData.albumImageUrl} alt="Album art" className="spotify-album-art" />
+                )}
                 <div className={`spotify-equalizer ${spotifyData.isPlaying ? 'playing' : ''}`}>
                   <span className="bar bar-1" />
                   <span className="bar bar-2" />
@@ -374,7 +408,17 @@ function App() {
               <div className="spotify-info">
                 <div className="spotify-status">
                   <span className={`spotify-dot ${spotifyData.isPlaying ? 'playing' : ''}`} />
-                  <span>{spotifyData.isPlaying ? 'LISTENING ON SPOTIFY' : 'RECENTLY PLAYED'}</span>
+                  <span>
+                    {spotifyData.status === 'loading'
+                      ? 'CONNECTING TO SPOTIFY'
+                      : spotifyData.status === 'unavailable'
+                        ? 'SPOTIFY UNAVAILABLE'
+                        : spotifyData.status === 'idle'
+                          ? 'NO RECENT TRACKS'
+                          : spotifyData.isPlaying
+                            ? 'LISTENING ON SPOTIFY'
+                            : 'RECENTLY PLAYED'}
+                  </span>
                 </div>
                 <div className="spotify-title">{spotifyData.title}</div>
                 <div className="spotify-artist">{spotifyData.artist}</div>
