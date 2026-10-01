@@ -108,6 +108,17 @@ const workExperience = [
     ],
   },
   {
+    company: 'PT. Dharmawangsa Persada',
+    role: 'Construction Supervisor',
+    date: 'May 2024 – Aug 2024',
+    logo: '/docsandpics/dp.png',
+    details: [
+      'Led end-to-end delivery of a Rp. 2.49 billion structural strengthening construction project for PT. Indonesia Tri Sembilan, owning scope, budget, quality, and safety across 3,700 m² of works while maintaining zero workplace accidents.',
+      'Authored milestone-based progress reports for client stakeholders, tracking project KPIs, flagging risks early, and keeping delivery on specification and on schedule.',
+      'Applied structured safety and risk management practices on-site as a PUPR-certified Construction Safety Officer, embedding proactive risk monitoring into daily project operations.',
+    ],
+  },
+  {
     company: 'Perumda Tugu Tirta Kota Malang',
     role: 'Production Management Intern',
     date: 'Feb 2024 – Apr 2024',
@@ -117,17 +128,6 @@ const workExperience = [
       'Independently produced conservation maps covering the Wendit and Binangun source catchment areas.',
       'Performed daily inspections on Reverse Osmosis (RO) treatment units, monitoring performance and water quality output.',
       'Authored a technical report analyzing the source-to-tap quality assurance workflow of a utility serving 844,000 residents.',
-    ],
-  },
-  {
-    company: 'PT. Dharmawangsa Persada',
-    role: 'Construction Supervisor',
-    date: 'May 2024 – Aug 2024',
-    logo: '/docsandpics/dp.png',
-    details: [
-      'Led end-to-end delivery of a Rp. 2.49 billion structural strengthening construction project for PT. Indonesia Tri Sembilan, owning scope, budget, quality, and safety across 3,700 m² of works while maintaining zero workplace accidents.',
-      'Authored milestone-based progress reports for client stakeholders, tracking project KPIs, flagging risks early, and keeping delivery on specification and on schedule.',
-      'Applied structured safety and risk management practices on-site as a PUPR-certified Construction Safety Officer, embedding proactive risk monitoring into daily project operations.',
     ],
   },
 ]
@@ -571,7 +571,7 @@ function HomePage() {
                 treatment plants than in lecture halls and wouldn't have it any other way.
               </p>
               <p>
-                From keeping a structural strengthening project accident-free to water
+                From keeping a structural strengthening project accident free to water
                 quality testing at Malang's municipal utility, I've learned that good
                 engineering is mostly good problem-solving with better boots. Now I'm
                 looking for where that mix of technical grounding and on-the-ground grit
